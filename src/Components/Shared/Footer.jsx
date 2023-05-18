@@ -13,7 +13,7 @@ const Footer = () => {
                         <h2 className='text-2xl font-bold font-fred'>Subscribe to Newsletter</h2>
                     </div>
                     <div className='w-5/12'>
-                        <h2>GDgdg</h2>
+                        <h2>Form</h2>
                     </div>
                     <div className='w-3/12'>
                         <h2>GDgdg</h2>
