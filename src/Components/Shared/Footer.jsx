@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaEnvelopeOpenText, FaFacebook, FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 const Footer = () => {
     return (
-        <div className=' bg-[#FAFAFA]'>
+        <div className=' bg-[#ecf4fa]'>
             <div className='boxed-container'>
                 {/* footer-top */}
                 <div className='py-12 lg:flex items-center lg:space-x-8 '>
