@@ -73,7 +73,7 @@ const NavigationBar = () => {
                       }>Home</NavLink>
                     <NavLink to='/all-toys'
                       className={({ isActive }) =>
-                        isActive ? ' text-[#26A5DA] py-2 px-3' : 'text-white  py-2 px-3'
+                        isActive ? ' text-[#26A5DA] py-2 px-3 ac-line' : 'text-white  py-2 px-3'
                       }>All Toys</NavLink>
                     <NavLink to='/my-toys'
                       className={({ isActive }) =>
