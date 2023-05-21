@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { FaGoogle } from "react-icons/fa";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/Authprovider';
+import Swal from 'sweetalert2';
 
 const SocialReg = () => {
     const navigate = useNavigate()
@@ -13,7 +14,12 @@ const SocialReg = () => {
         googleLogIn()
             .then((result) => {
                 navigate(from, { replace: true })
-                // toast.success('Successfully Logged In');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You have logged in Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             })
             .catch((error) => {
                 // toast.error(error.message);

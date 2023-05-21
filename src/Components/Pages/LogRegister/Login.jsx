@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/Authprovider';
 import SocialReg from './SocialReg';
+import Swal from 'sweetalert2';
 const Login = () => {
     const { loginUser } = useContext(AuthContext);
     // const [forget, forgetHandle] = useState(false);
@@ -24,8 +25,15 @@ const Login = () => {
         setError('');
         loginUser(email, password)
             .then((result) => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You have logged in Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
                 navigate(from, { replace: true })
                 // toast.success('Successfully Logged In'); 
+               
             })
             .catch((error) => {
 

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import SocialReg from './SocialReg';
 import { AuthContext } from '../../../Contexts/Authprovider';
+import Swal from 'sweetalert2';
 const Register = () => {
     const { user, createUser, updateUser, logOut } = useContext(AuthContext);
     const [error, setError] = useState('');
@@ -22,7 +23,12 @@ const Register = () => {
         else {
             createUser(email, password)
                 .then(result => {
-                    // toast.success('Registration Successful');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'You have logged in Successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
                     setError('');
                     updateUser(userName, photoUrl)
                         .then(() => {
