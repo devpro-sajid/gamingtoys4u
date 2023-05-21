@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { RiMenuFill, RiCloseFill, RiShoppingCart2Fill, RiShoppingCart2Line, RiFacebookCircleFill, RiTwitterFill, RiInstagramLine, RiLinkedinBoxFill, RiBehanceFill, RiPhoneFill, RiMailSendLine } from "react-icons/ri";
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/Authprovider';
 
 
 
@@ -11,7 +12,16 @@ function classNames(...classes) {
 }
 
 const NavigationBar = () => {
-  const user = null;
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+        .then(() => {
+            // toast.success('Logout Success');
+        })
+        .catch((error) => {
+            // toast.error(error.message);
+        })
+}
   return (
 
     <Disclosure as="nav" className="bg-gray-800">
@@ -27,14 +37,14 @@ const NavigationBar = () => {
                 <RiBehanceFill className='text-xl'></RiBehanceFill>
               </div>
               <div className='flex items-center text-white space-x-4'>
-                  <div className='flex items-center space-x-1'>
+                <div className='flex items-center space-x-1'>
                   <RiPhoneFill></RiPhoneFill>
                   <p>+8801868061206</p>
-                  </div>
-                  <div className='flex items-center space-x-1'>
+                </div>
+                <div className='flex items-center space-x-1'>
                   <RiMailSendLine></RiMailSendLine>
                   <p>devsajid@gmail.com</p>
-                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -79,6 +89,10 @@ const NavigationBar = () => {
                       className={({ isActive }) =>
                         isActive ? 'text-[#26A5DA] py-2 px-3' : 'text-white  py-2 px-3'
                       }>My Toys</NavLink>
+                    <NavLink to='/add-a-toy'
+                      className={({ isActive }) =>
+                        isActive ? 'bg-[#445165] text-[#26A5DA] py-2 px-3' : 'py-2 px-3 text-white '
+                      }>Add A Toy</NavLink>
                     <NavLink to='/blog'
                       className={({ isActive }) =>
                         isActive ? ' text-[#26A5DA] py-2 px-3' : 'text-white  py-2 px-3'
@@ -98,14 +112,16 @@ const NavigationBar = () => {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3 flex items-center">
                   <RiShoppingCart2Line className='text-white text-2xl'></RiShoppingCart2Line>
-                  <div title='Sajidur Rahman'>
-                    {user ? (<Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ml-4">
+                  <div>
+                    {user ? (<div title={user?.displayName
+                  }><Menu.Button className="flex rounded-full  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ml-4 bg-white">
                       <img
                         className="h-10 w-10 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={user?.photoURL}
                         alt=""
                       />
-                    </Menu.Button>) : (
+
+                    </Menu.Button></div>) : (
                       <Link to='/login' className='bg-[#26A8DF] sm:px-6 px-3 md:px-8 text-white md:py-2 rounded-sm sm:leading-6 leading-8 sm:block hidden ml-4 hover:text-[#26A8DF] border border-[#26A8DF]  hover:bg-[#1F2937] duration-500'>Login</Link>
                     )}
 
@@ -127,12 +143,12 @@ const NavigationBar = () => {
                           href="#"
                           className='block px-4 py-2 text-sm text-gray-700'
                         >
-                          Sajidur Rahman
+                         {user?.displayName}
                         </a>
                       </Menu.Item>
                       <Menu.Item>
 
-                        <a
+                        <a onClick={handleLogout}
                           href="#"
                           className='block px-4 py-2 text-sm text-gray-700'
                         >
@@ -147,7 +163,7 @@ const NavigationBar = () => {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="  pb-5 pt-5 flex flex-col ">
+            <div className="  pb-5 pt-5 flex flex-col border-b border-[#26A5DA]">
               {/* {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
@@ -174,6 +190,10 @@ const NavigationBar = () => {
                 className={({ isActive }) =>
                   isActive ? 'bg-[#445165] text-[#26A5DA] py-2 px-3' : 'py-2 px-3 text-white '
                 }>My Toys</NavLink>
+              <NavLink to='/add-a-toy'
+                className={({ isActive }) =>
+                  isActive ? 'bg-[#445165] text-[#26A5DA] py-2 px-3' : 'py-2 px-3 text-white '
+                }>Add A Toy</NavLink>
               <NavLink to='/blog'
                 className={({ isActive }) =>
                   isActive ? 'bg-[#445165] text-[#26A5DA] py-2 px-3' : 'py-2 px-3 text-white '
