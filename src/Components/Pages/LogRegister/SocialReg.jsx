@@ -18,7 +18,7 @@ const SocialReg = () => {
                     icon: 'success',
                     title: 'You have logged in Successfully',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer:1500
                   })
             })
             .catch((error) => {
