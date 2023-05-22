@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react'
 import { Tab } from '@headlessui/react'
 import ToyCard from './ToyCard';
+import Loading from '../../../../Utils/Loading';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -9,17 +10,23 @@ function classNames(...classes) {
 
 const ToyCategory = () => {
     const [toys, setToys] = useState([]);
-    const [loadedCat, loadTabData] = useState('rubiks')
+    const [loadedCat, loadTabData] = useState('rubiks');
+    const [loading,setLoading]=useState(false);
     useEffect(() => {
+        setLoading(true);
         fetch(`http://localhost:5000/allToysByCategory/${loadedCat}`)
-            .then(res => res.json()
-                .then(data => setToys(data)))
+        .then(res => res.json()
+        .then(data => {
+        setToys(data)
+        setLoading(false);
+    }))
+        
     }, [loadedCat])
 
 
 
     return (
-        <div className='bg-[#ECF4FA] my-14 py-12'>
+        <div className='bg-[#ECF4FA] mb-14 py-12'>
             <div className='flex flex-col items-center '>
                 <h2 className='font-mont md:text-3xl text-2xl font-bold'>Best Toy Game Collections</h2>
                 <p className='pt-3 pb-4'>Exclusive collection of gaming toys you must buy</p>
@@ -76,9 +83,12 @@ const ToyCategory = () => {
                                 'focus:outline-none '
                             )}
                         >
-                            <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 gap-5'>
+                            {loading? <>
+                            <Loading></Loading>
+                            </>:<div className='sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 gap-5'>
                                 {toys?.map(toy => <ToyCard key={toy._id} toy={toy}></ToyCard>)}
-                            </div>
+                            </div>}
+                            
 
                         </Tab.Panel>
                         <Tab.Panel
@@ -87,9 +97,11 @@ const ToyCategory = () => {
                                 'focus:outline-none '
                             )}
                         >
-                            <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 gap-5'>
+                           {loading? <>
+                            <Loading></Loading>
+                            </>:<div className='sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 gap-5'>
                                 {toys?.map(toy => <ToyCard key={toy._id} toy={toy}></ToyCard>)}
-                            </div>
+                            </div>}
                         </Tab.Panel>
                         <Tab.Panel
                             className={classNames(
@@ -97,9 +109,11 @@ const ToyCategory = () => {
                                 'focus:outline-none '
                             )}
                         >
-                             <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3  lg:gap-8 gap-5'>
+                            {loading? <>
+                            <Loading></Loading>
+                            </>:<div className='sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 gap-5'>
                                 {toys?.map(toy => <ToyCard key={toy._id} toy={toy}></ToyCard>)}
-                            </div>
+                            </div>}
                         </Tab.Panel>
                     </Tab.Panels>
                 </Tab.Group>
