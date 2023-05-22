@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { FaEye } from 'react-icons/fa';
+
 
 const AllToys = () => {
+    const [toys, setToys] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/allToys')
+            .then(res => res.json())
+            .then(data => setToys(data))
+    }, [])
     return (
         <>
             <div className='herobg py-28 text-white text-center'>
@@ -20,7 +28,7 @@ const AllToys = () => {
                             aria-label="Search"
                             aria-describedby="button-addon1" />
 
-                       
+
                         <button
                             className="relative z-[2] flex items-center rounded-r bg-[#26A8DF] px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
                             type="button"
@@ -42,9 +50,9 @@ const AllToys = () => {
 
                 </div>
 
-               <div className='md:w-5/12 sm:w-4/12 sm:flex justify-end'>
-                <p>Fahim</p>
-               </div>
+                <div className='md:w-5/12 sm:w-4/12 sm:flex justify-end'>
+                    <p>Fahim</p>
+                </div>
 
 
             </div>
@@ -56,34 +64,32 @@ const AllToys = () => {
                             <table className="min-w-full text-left text-sm font-light">
                                 <thead className="border-b font-medium dark:border-neutral-500 bg-[#ECF4FA]">
                                     <tr className='text-black'>
-                                        <th scope="col" className="px-6 py-4">#</th>
-                                        <th scope="col" className="px-6 py-4">First</th>
-                                        <th scope="col" className="px-6 py-4">Last</th>
-                                        <th scope="col" className="px-6 py-4">Handle</th>
+                                        <th scope="col" className="md:px-6 px-4 py-4">#</th>
+                                        <th scope="col" className="md:px-6 px-4 py-4">Seller</th>
+                                        <th scope="col" className="md:px-6 px-4 py-4">Toy Name</th>
+                                        <th scope="col" className="md:px-6 px-4 py-4">Sub-category</th>
+                                        <th scope="col" className="md:px-6 px-4 py-4">Price</th>
+                                        <th scope="col" className="md:pl-6 px-4 py-4">Available Qty</th>
+                                        <th scope="col" className="md:pl-6 pr-3 pl-4 py-4 flex justify-end">Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr
-                                        className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                                        <td className="whitespace-nowrap px-6 py-4 font-medium">1</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Mark</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Otto</td>
-                                        <td className="whitespace-nowrap px-6 py-4">@mdo</td>
-                                    </tr>
-                                    <tr
-                                        className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                                        <td className="whitespace-nowrap px-6 py-4 font-medium">2</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Jacob</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Thornton</td>
-                                        <td className="whitespace-nowrap px-6 py-4">@fat</td>
-                                    </tr>
-                                    <tr
-                                        className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                                        <td className="whitespace-nowrap px-6 py-4 font-medium">3</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Larry</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Wild</td>
-                                        <td className="whitespace-nowrap px-6 py-4">@twitter</td>
-                                    </tr>
+                                    {toys && toys.map((toy,index) => {
+                                        return (<tr key={toy._id}
+                                            className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                                            <td className="whitespace-nowrap md:px-6 px-4 py-4 font-medium text-base">{index+1}</td>
+                                            <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">{toy?.sellerName}</td>
+                                            <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">{toy?.toyName}</td>
+                                            <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">{toy?.category}</td>
+                                            <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">${toy?.toyPrice}</td>
+                                            <td className="whitespace-nowrap md:px-6 px-4  py-4 text-black">{toy?.quantity}</td>
+                                            <td className="whitespace-nowrap md:pl-6 pl-4 flex justify-end py-4 text-black"><button className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
+                    <FaEye></FaEye>
+                </button></td>
+                                        </tr>)
+                                    }
+                                    )}
+
                                 </tbody>
                             </table>
                         </div>
