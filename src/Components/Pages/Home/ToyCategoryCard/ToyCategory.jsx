@@ -11,7 +11,7 @@ function classNames(...classes) {
 const ToyCategory = () => {
     const [toys, setToys] = useState([]);
     const [loadedCat, loadTabData] = useState('rubiks');
-    const [loading,setLoading]=useState(false);
+    const [loading,setLoading]=useState(true);
     useEffect(() => {
         setLoading(true);
         fetch(`http://localhost:5000/allToysByCategory/${loadedCat}`)
@@ -32,8 +32,6 @@ const ToyCategory = () => {
                 <p className='pt-3 pb-4'>Exclusive collection of gaming toys you must buy</p>
                 <hr className='border border-[#26A8DF] w-24' />
             </div>
-            {toys?.length}
-
             <div className='boxed-container py-8'>
                 <Tab.Group>
                     <Tab.List className="flex space-x-2 rounded-xl bg-white p-2">

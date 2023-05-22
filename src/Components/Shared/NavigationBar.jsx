@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { RiMenuFill, RiCloseFill, RiShoppingCart2Fill, RiShoppingCart2Line, RiFacebookCircleFill, RiTwitterFill, RiInstagramLine, RiLinkedinBoxFill, RiBehanceFill, RiPhoneFill, RiMailSendLine } from "react-icons/ri";
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/Authprovider';
+import Swal from 'sweetalert2';
 
 
 
@@ -16,7 +17,12 @@ const NavigationBar = () => {
   const handleLogout = () => {
     logOut()
         .then(() => {
-            // toast.success('Logout Success');
+          Swal.fire({
+            icon: 'success',
+            title: 'You have logged out Successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
         })
         .catch((error) => {
             // toast.error(error.message);
