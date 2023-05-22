@@ -1,14 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import { FaEye } from 'react-icons/fa';
+import React, { useEffect, useState, Fragment } from 'react';
+import { FaAngleDown, FaChevronDown, FaEye } from 'react-icons/fa';
+import { Menu, Transition } from '@headlessui/react'
+import Swal from 'sweetalert2';
 
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
 
 const AllToys = () => {
     const [toys, setToys] = useState([])
+    const [loading, setLoading] = useState(true);
+    const [searchText, setSearchText] = useState("");
+    const [sortValue,setsortValue]=useState('Sort data by')
     useEffect(() => {
+        setLoading(true);
         fetch('http://localhost:5000/allToys')
             .then(res => res.json())
-            .then(data => setToys(data))
+            .then(data => {
+                setLoading(false);
+                setToys(data)
+            })
     }, [])
+    const handleSearchToys=()=>{
+        if(searchText===""){
+            return  Swal.fire({
+                icon: 'warning',
+                title: 'Please type something and try again',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        }
+        else{
+            setLoading(true);
+            fetch(`http://localhost:5000/getToysByCat/${searchText}`)
+            .then((res) => res.json())
+            .then((data) => {
+              setToys(data);
+              setLoading(false);
+            });
+        }
+        
+    }
+    const handleSortToys = (num,sorts) => {
+        setLoading(true);
+        fetch(`http://localhost:5000/toysSort/${num}`)
+            .then(res => res.json())
+            .then(data => {
+                setLoading(false);
+                setToys(data)
+            })
+            setsortValue(sorts);
+    }
     return (
         <>
             <div className='herobg py-28 text-white text-center'>
@@ -20,7 +62,7 @@ const AllToys = () => {
                     <p className='sm:hidden md:block text-xl font-semibold '>Search Toys: </p>
 
                     <div className="relative  flex w-full flex-wrap items-stretch md:w-8/12 sm:my-0  my-4">
-                        <input
+                        <input onChange={(e) => setSearchText(e.target.value)}
                             type="search"
                             className="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-[#26A8DF] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
                             name='searchField'
@@ -29,7 +71,7 @@ const AllToys = () => {
                             aria-describedby="button-addon1" />
 
 
-                        <button
+                        <button onClick={handleSearchToys}
                             className="relative z-[2] flex items-center rounded-r bg-[#26A8DF] px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
                             type="button"
                             id="button-addon1"
@@ -51,7 +93,57 @@ const AllToys = () => {
                 </div>
 
                 <div className='md:w-5/12 sm:w-4/12 sm:flex justify-end'>
-                    <p>Fahim</p>
+
+                    <Menu as="div" className="relative inline-block text-left">
+                        <div>
+                            <Menu.Button className="inline-flex w-full  justify-center gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 ">
+                                {sortValue}
+                                <FaAngleDown className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+                            </Menu.Button>
+                        </div>
+
+                        <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                        >
+                            <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                <div className="py-1">
+                                    <Menu.Item>
+                                        {({ active }) => (
+                                            <a onClick={() => handleSortToys(1,'Ascending')}
+                                                href="#"
+                                                className={classNames(
+                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                    'block px-4 py-2 text-sm'
+                                                )}
+                                            >
+                                                Ascending
+                                            </a>
+                                        )}
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        {({ active }) => (
+                                            <a onClick={() => handleSortToys(-1,'Descending')}
+                                                href="#"
+                                                className={classNames(
+                                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                                    'block px-4 py-2 text-sm'
+                                                )}
+                                            >
+                                                Descending
+                                            </a>
+                                        )}
+                                    </Menu.Item>
+                                </div>
+                            </Menu.Items>
+                        </Transition>
+                    </Menu>
+
                 </div>
 
 
@@ -74,29 +166,43 @@ const AllToys = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {toys && toys.map((toy,index) => {
+                                    {loading ? <></> : <>{toys && toys.map((toy, index) => {
                                         return (<tr key={toy._id}
                                             className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                                            <td className="whitespace-nowrap md:px-6 px-4 py-4 font-medium text-base">{index+1}</td>
+                                            <td className="whitespace-nowrap md:px-6 px-4 py-4 font-medium text-base">{index + 1}</td>
                                             <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">{toy?.sellerName}</td>
                                             <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">{toy?.toyName}</td>
                                             <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">{toy?.category}</td>
                                             <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">${toy?.toyPrice}</td>
                                             <td className="whitespace-nowrap md:px-6 px-4  py-4 text-black">{toy?.quantity}</td>
                                             <td className="whitespace-nowrap md:pl-6 pl-4 flex justify-end py-4 text-black"><button className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
-                    <FaEye></FaEye>
-                </button></td>
+                                                <FaEye></FaEye>
+                                            </button></td>
                                         </tr>)
                                     }
-                                    )}
+                                    )}</>}
+
 
                                 </tbody>
                             </table>
+                            {loading ? <div className="animate-pulse">
+                                <div className="h-4 bg-gray-200 mt-3 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-300 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-200 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-300 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-300 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-300 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-300 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-300 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-300 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-300 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-300 mb-6 rounded"></div>
+                                <div className="h-4 bg-gray-200 mb-6 rounded"></div>
+                            </div> : <></>}
                         </div>
                     </div>
                 </div>
             </div>
-
         </>
     );
 };
