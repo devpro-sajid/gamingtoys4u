@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react'
 import { Tab } from '@headlessui/react'
+import ToyCard from './ToyCard';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -11,8 +12,8 @@ const ToyCategory = () => {
     const [loadedCat, loadTabData] = useState('rubiks')
     useEffect(() => {
         fetch(`http://localhost:5000/allToysByCategory/${loadedCat}`)
-        .then(res=>res.json()
-        .then(data=>setToys(data)))
+            .then(res => res.json()
+                .then(data => setToys(data)))
     }, [loadedCat])
 
 
@@ -75,7 +76,10 @@ const ToyCategory = () => {
                                 'focus:outline-none '
                             )}
                         >
-                            { }
+                            <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 gap-5'>
+                                {toys?.map(toy => <ToyCard key={toy._id} toy={toy}></ToyCard>)}
+                            </div>
+
                         </Tab.Panel>
                         <Tab.Panel
                             className={classNames(
@@ -83,7 +87,9 @@ const ToyCategory = () => {
                                 'focus:outline-none '
                             )}
                         >
-                            { }
+                            <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 gap-5'>
+                                {toys?.map(toy => <ToyCard key={toy._id} toy={toy}></ToyCard>)}
+                            </div>
                         </Tab.Panel>
                         <Tab.Panel
                             className={classNames(
@@ -91,7 +97,9 @@ const ToyCategory = () => {
                                 'focus:outline-none '
                             )}
                         >
-                            { }
+                             <div className='sm:grid sm:grid-cols-2 lg:grid-cols-3  lg:gap-8 gap-5'>
+                                {toys?.map(toy => <ToyCard key={toy._id} toy={toy}></ToyCard>)}
+                            </div>
                         </Tab.Panel>
                     </Tab.Panels>
                 </Tab.Group>
