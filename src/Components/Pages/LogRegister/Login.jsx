@@ -10,13 +10,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
-    // const handlechecked=(event)=>{
-    //     if (event.target.checked) {
-    //         console.log('✅ Checkbox is checked');
-    //       } else {
-    //         console.log('⛔️ Checkbox is NOT checked');
-    //       }
-    // }
+   
     const handleLogin = (event) => {
         event.preventDefault()
         const form = event.target;
@@ -57,7 +51,7 @@ const Login = () => {
                         <img src="https://i.ibb.co/PMy18FS/app-development-concept-with-flat-deisng-23-2147852844.jpg" alt="" />
                     </div>
                     <div className='md:w-6/12 py-5 lg:py-12'>
-                        <form onSubmit={handleLogin} className="bg-white rounded px-8 pt-6 pb-6 sm:w-96 mx-auto md:w-full lg:w-96">
+                        <form onSubmit={handleLogin} className="bg-white rounded px-8 pt-6 sm:w-96 mx-auto md:w-full lg:w-96">
                             <h2 className='text-2xl font-bold  text-center mb-8'>Login Here</h2>
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email-log">
@@ -110,8 +104,8 @@ const Login = () => {
                                     Or
                                 </p>
                             </div>
-                            <SocialReg></SocialReg>
                         </form>
+                        <SocialReg></SocialReg>
                         <p className="text-sm text-center pt-3"> Don't Have An Account? <Link className='text-[#26A8DF]' to='/register'>Register</Link></p>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ const AddAToy = () => {
     const {
         register,
         handleSubmit,
+        reset,
         watch,
         formState: { errors },
     } = useForm();
@@ -22,12 +23,7 @@ const AddAToy = () => {
             .then(res => res.json())
             .then(response => {
                 console.log(response);
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Toy Added Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                })
+                
                 if (response.insertedId
                 ) {
                     Swal.fire({
@@ -36,7 +32,7 @@ const AddAToy = () => {
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
-                   
+                   reset();
                 }
             })
     }
@@ -91,7 +87,7 @@ const AddAToy = () => {
                                 </div>
                                 <div className='md:w-1/2 mb-3'>
                                     <label className="block text-gray-700 text-sm font-bold mb-2">
-                                        Price
+                                        Price (USD)
                                     </label>
                                     <input className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#26A8DF] focus:shadow-outline " {...register("toyPrice")} type="number" placeholder="price of your toy" required />
                                 </div>

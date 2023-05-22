@@ -13,12 +13,12 @@
     "@headlessui/react": "^1.7.14",
     "firebase": "^9.22.0",
     "localforage": "^1.10.0",
+    "lottie-react": "^2.4.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
-    "react-lottie": "^1.2.3",
     "react-router-dom": "^6.11.2",
     "sort-by": "^0.0.2",
     "sweetalert2": "^11.7.5",
@@ -36,5 +36,18 @@
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2",
     "vite": "^4.3.2"
-  }
+  },
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/programming-hero-web-course-4/b7a11-toy-marketplace-client-side-devpro-sajid.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/programming-hero-web-course-4/b7a11-toy-marketplace-client-side-devpro-sajid/issues"
+  },
+  "homepage": "https://github.com/programming-hero-web-course-4/b7a11-toy-marketplace-client-side-devpro-sajid#readme",
+  "description": ""
 }

@@ -29,3 +29,7 @@ a:hover {
   background-position: center;
   background-size: cover;
 }
+.swal2-popup .swal2-styled.swal2-confirm {
+	background-color: #26A8DF !important;
+    border:1px solid #26A8DF;
+}

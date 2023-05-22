@@ -25,9 +25,9 @@ const Register = () => {
                 .then(result => {
                     Swal.fire({
                         icon: 'success',
-                        title: 'You have logged in Successfully',
+                        title: 'You have Registered Successfully',
                         showConfirmButton: false,
-                        timer: 1500
+                        timer:1500
                       })
                     setError('');
                     updateUser(userName, photoUrl)
@@ -52,7 +52,7 @@ const Register = () => {
                         <img src="https://i.ibb.co/PMy18FS/app-development-concept-with-flat-deisng-23-2147852844.jpg" alt="" />
                     </div>
                     <div className='md:w-6/12 py-5 lg:py-12'>
-                        <form onSubmit={handleRegister} className="bg-white rounded px-8 pt-6 pb-6 sm:w-96 mx-auto md:w-full lg:w-96">
+                        <form onSubmit={handleRegister} className="bg-white rounded px-8 pt-6 sm:w-96 mx-auto md:w-full lg:w-96">
                             <h2 className='text-2xl font-bold  text-center mb-8'>Register Here</h2>
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="reg-name">
@@ -95,8 +95,8 @@ const Register = () => {
                                     Or
                                 </p>
                             </div>
-                            <SocialReg></SocialReg>
                         </form>
+                        <SocialReg></SocialReg>
                         <p className="text-sm text-center pt-3"> Already Have An Account? <Link className='text-[#26A8DF]' to='/login'>Login</Link></p>
                     </div>
                 </div>

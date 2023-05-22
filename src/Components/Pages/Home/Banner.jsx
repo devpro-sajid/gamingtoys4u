@@ -1,18 +1,18 @@
 import React from 'react';
-import Lottie from 'react-lottie';
 import animationData from '../../../assets/herogame.json';
 import { FaArrowRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
+import Lottie from "lottie-react";
 
 const Banner = () => {
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: animationData,
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice'
-        }}
-        const lottieWidth = '100%';
+    // const defaultOptions = {
+    //     loop: true,
+    //     autoplay: true,
+    //     animationData: animationData,
+    //     rendererSettings: {
+    //         preserveAspectRatio: 'xMidYMid slice'
+    //     }}
+    //     const lottieWidth = '100%';
     return (
         <>
             <div className='herobg'>
@@ -35,15 +35,11 @@ const Banner = () => {
 
                     </div>
                     <div className="md:w-1/2">
-                        <div className='sm:block hidden'>
-                            <Lottie options={defaultOptions}
-                                height={400}
-                                width={lottieWidth} />
+                        <div className='sm:flex hidden justify-end items-center'>
+                                <Lottie animationData={animationData} loop={true}/>
                         </div>
                         <div className='sm:hidden block'>
-                            <Lottie options={defaultOptions}
-                                height={250}
-                                width={250} />
+                            <Lottie animationData={animationData} loop={true}/>
                         </div>
                     </div>
                 </div>
