@@ -24,7 +24,8 @@ const Login = () => {
                     title: 'You have logged in Successfully',
                     showConfirmButton: false,
                     timer: 1500
-                  })
+                  });
+                  console.log(result.user)
                 navigate(from, { replace: true })
                 // toast.success('Successfully Logged In'); 
                

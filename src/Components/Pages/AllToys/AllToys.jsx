@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { FaAngleDown, FaChevronDown, FaEye } from 'react-icons/fa';
 import { Menu, Transition } from '@headlessui/react'
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -11,7 +12,7 @@ const AllToys = () => {
     const [toys, setToys] = useState([])
     const [loading, setLoading] = useState(true);
     const [searchText, setSearchText] = useState("");
-    const [sortValue,setsortValue]=useState('Sort data by')
+    const [sortValue, setsortValue] = useState('Sort data by')
     useEffect(() => {
         setLoading(true);
         fetch('http://localhost:5000/allToys')
@@ -21,27 +22,27 @@ const AllToys = () => {
                 setToys(data)
             })
     }, [])
-    const handleSearchToys=()=>{
-        if(searchText===""){
-            return  Swal.fire({
+    const handleSearchToys = () => {
+        if (searchText === "") {
+            return Swal.fire({
                 icon: 'warning',
                 title: 'Please type something and try again',
                 showConfirmButton: false,
                 timer: 1500
-              })
+            })
         }
-        else{
+        else {
             setLoading(true);
             fetch(`http://localhost:5000/getToysByCat/${searchText}`)
-            .then((res) => res.json())
-            .then((data) => {
-              setToys(data);
-              setLoading(false);
-            });
+                .then((res) => res.json())
+                .then((data) => {
+                    setToys(data);
+                    setLoading(false);
+                });
         }
-        
+
     }
-    const handleSortToys = (num,sorts) => {
+    const handleSortToys = (num, sorts) => {
         setLoading(true);
         fetch(`http://localhost:5000/toysSort/${num}`)
             .then(res => res.json())
@@ -49,7 +50,7 @@ const AllToys = () => {
                 setLoading(false);
                 setToys(data)
             })
-            setsortValue(sorts);
+        setsortValue(sorts);
     }
     return (
         <>
@@ -59,9 +60,9 @@ const AllToys = () => {
 
             <div className='sm:flex justify-between boxed-container pt-12 pb-3 items-center'>
                 <div className='md:flex md:space-x-3 items-center  md:w-7/12 sm:w-8/12'>
-                    <p className='sm:hidden md:block text-xl font-semibold '>Search Toys: </p>
+                    <p className='hidden md:block text-xl font-semibold '>Search Toys: </p>
 
-                    <div className="relative  flex w-full flex-wrap items-stretch md:w-8/12 sm:my-0  my-4">
+                    <div className="relative  w-full flex-wrap items-stretch md:w-8/12 sm:my-0  my-4 sm:flex hidden">
                         <input onChange={(e) => setSearchText(e.target.value)}
                             type="search"
                             className="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-[#26A8DF] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
@@ -92,8 +93,8 @@ const AllToys = () => {
 
                 </div>
 
-                <div className='md:w-5/12 sm:w-4/12 sm:flex justify-end'>
-
+                <div className='md:w-5/12 sm:w-4/12 flex sm:justify-end justify-between'>
+                    <p className='sm:hidden  text-xl font-semibold '>Search Toys: </p>
                     <Menu as="div" className="relative inline-block text-left">
                         <div>
                             <Menu.Button className="inline-flex w-full  justify-center gap-x-1.5 rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 ">
@@ -115,7 +116,7 @@ const AllToys = () => {
                                 <div className="py-1">
                                     <Menu.Item>
                                         {({ active }) => (
-                                            <a onClick={() => handleSortToys(1,'Ascending')}
+                                            <a onClick={() => handleSortToys(1, 'Ascending')}
                                                 href="#"
                                                 className={classNames(
                                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -128,7 +129,7 @@ const AllToys = () => {
                                     </Menu.Item>
                                     <Menu.Item>
                                         {({ active }) => (
-                                            <a onClick={() => handleSortToys(-1,'Descending')}
+                                            <a onClick={() => handleSortToys(-1, 'Descending')}
                                                 href="#"
                                                 className={classNames(
                                                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -146,6 +147,34 @@ const AllToys = () => {
 
                 </div>
 
+                <div className="relative  flex w-full flex-wrap items-stretch md:w-8/12 sm:my-0  my-4 sm:hidden">
+                    <input onChange={(e) => setSearchText(e.target.value)}
+                        type="search"
+                        className="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-[#26A8DF] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                        name='searchField'
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="button-addon1" />
+
+
+                    <button onClick={handleSearchToys}
+                        className="relative z-[2] flex items-center rounded-r bg-[#26A8DF] px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+                        type="button"
+                        id="button-addon1"
+                        data-te-ripple-init
+                        data-te-ripple-color="light">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            className="h-5 w-5">
+                            <path
+                                fillRule="evenodd"
+                                d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                                clipRule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
 
             </div>
 
@@ -175,9 +204,9 @@ const AllToys = () => {
                                             <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">{toy?.category}</td>
                                             <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">${toy?.toyPrice}</td>
                                             <td className="whitespace-nowrap md:px-6 px-4  py-4 text-black">{toy?.quantity}</td>
-                                            <td className="whitespace-nowrap md:pl-6 pl-4 flex justify-end py-4 text-black"><button className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
+                                            <td className="whitespace-nowrap md:pl-6 pl-4 flex justify-end py-4 text-black"><Link to={`/toy-details/${toy?._id}`}><button className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
                                                 <FaEye></FaEye>
-                                            </button></td>
+                                            </button></Link></td>
                                         </tr>)
                                     }
                                     )}</>}

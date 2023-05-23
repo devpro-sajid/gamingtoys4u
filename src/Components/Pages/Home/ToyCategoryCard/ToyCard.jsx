@@ -1,6 +1,7 @@
 import React from 'react';
 import Rating from 'react-rating';
 import { FaEye, FaRegStar, FaStar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 const ToyCard = ({ toy }) => {
     const { toyName, _id, toyPhoto, toyPrice, rating } = toy
     return (
@@ -23,9 +24,10 @@ const ToyCard = ({ toy }) => {
                     fullSymbol={<FaStar />}
                     readonly
                 />
-                <button className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
+                <Link to={`/toy-details/${_id}`}><button className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
                     <FaEye></FaEye>
-                </button>
+                </button></Link>
+
             </div>
 
         </div>

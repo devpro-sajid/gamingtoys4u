@@ -26,7 +26,7 @@ const ToyCategory = () => {
 
 
     return (
-        <div className='bg-[#ECF4FA] mb-14 py-12'>
+        <div className='bg-[#ECF4FA] mb-14 pt-20 pb-12'>
             <div className='flex flex-col items-center '>
                 <h2 className='font-mont md:text-3xl text-2xl font-bold'>Best Toy Game Collections</h2>
                 <p className='pt-3 pb-4'>Exclusive collection of gaming toys you must buy</p>
