@@ -22,8 +22,7 @@ const ErrorPage = () => {
           <Link
             to='/'
             className='px-8 py-3 font-semibold rounded bg-[#26A8DF] text-white hover:text-white'
-          >
-            Back to Homepage
+          > Back to Homepage
           </Link>
         </div>
       </div>
