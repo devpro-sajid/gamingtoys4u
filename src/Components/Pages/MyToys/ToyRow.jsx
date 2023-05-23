@@ -24,7 +24,7 @@ const ToyRow = ({ toy, setLoadUpdateToys }) => {
             if (result.isConfirmed) {
 
 
-                fetch(`http://localhost:5000/deleteToy/${id}`, {
+                fetch(`https://gaming-toy-server.vercel.app/deleteToy/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -59,7 +59,7 @@ const ToyRow = ({ toy, setLoadUpdateToys }) => {
     } = useForm();
     const onSubmit = (data) => {
         data.toyPrice = parseFloat(data.toyPrice);
-        fetch(`http://localhost:5000/updateToy/${toy._id}`, {
+        fetch(`https://gaming-toy-server.vercel.app/updateToy/${toy._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),

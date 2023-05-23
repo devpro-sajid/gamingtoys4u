@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import SocialReg from './SocialReg';
 import { AuthContext } from '../../../Contexts/Authprovider';
 import Swal from 'sweetalert2';
+import { TabTitle } from '../../../Utils/Generatefunctions';
 const Register = () => {
+    TabTitle('Register | Gaming Toys & Puzzles');
     const { user, createUser, updateUser, logOut } = useContext(AuthContext);
     const [error, setError] = useState('');
     const navigate = useNavigate();

@@ -3,19 +3,21 @@ import { FaAngleDown, FaChevronDown, FaEye } from 'react-icons/fa';
 import { Menu, Transition } from '@headlessui/react'
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import { TabTitle } from '../../../Utils/Generatefunctions';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 const AllToys = () => {
+    TabTitle('All Toys | Gaming Toys & Puzzles');
     const [toys, setToys] = useState([])
     const [loading, setLoading] = useState(true);
     const [searchText, setSearchText] = useState("");
     const [sortValue, setsortValue] = useState('Sort data by')
     useEffect(() => {
         setLoading(true);
-        fetch('http://localhost:5000/allToys')
+        fetch('https://gaming-toy-server.vercel.app/allToys')
             .then(res => res.json())
             .then(data => {
                 setLoading(false);
@@ -33,7 +35,7 @@ const AllToys = () => {
         }
         else {
             setLoading(true);
-            fetch(`http://localhost:5000/getToysByCat/${searchText}`)
+            fetch(`https://gaming-toy-server.vercel.app/getToysByCat/${searchText}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setToys(data);
@@ -44,7 +46,7 @@ const AllToys = () => {
     }
     const handleSortToys = (num, sorts) => {
         setLoading(true);
-        fetch(`http://localhost:5000/toysSort/${num}`)
+        fetch(`https://gaming-toy-server.vercel.app/toysSort/${num}`)
             .then(res => res.json())
             .then(data => {
                 setLoading(false);

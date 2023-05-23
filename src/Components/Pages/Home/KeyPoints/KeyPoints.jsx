@@ -1,8 +1,16 @@
 import React from 'react';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 const KeyPoints = () => {
     return (
-        <div className='sm:grid sm:grid-cols-2 lg:grid-cols-4 boxed-container my-14 gap-8'>
+        <div data-aos="zoom-in"
+        data-aos-offset="200"
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        data-aos-mirror="true"
+        data-aos-once="true"
+        data-aos-anchor-placement="top-center" className='sm:grid sm:grid-cols-2 lg:grid-cols-4 boxed-container my-14 gap-8'>
             <div className='bg-[#E8EFF8] p-8 rounded-lg sm:mb-0 mb-5'>
                 <img src="https://i.ibb.co/KygT4yn/Screenshot-5-23-2023-at-10-44-PM.png" alt="" />
                 <h2 className='pt-2 pb-1 text-[#5FADFF] text-xl font-bold'>FREE SHIPPING</h2>

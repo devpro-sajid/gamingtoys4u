@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Contexts/Authprovider';
+import { TabTitle } from '../../../Utils/Generatefunctions';
 
 
 const AddAToy = () => {
+    TabTitle('Add A Toy | Gaming Toys & Puzzles');
     const { user } = useContext(AuthContext);
     const {
         register,
@@ -15,7 +17,7 @@ const AddAToy = () => {
     } = useForm();
     const onSubmit = (data) => {
         data.toyPrice = parseFloat(data.toyPrice);
-        fetch("http://localhost:5000/add-toy", {
+        fetch("https://gaming-toy-server.vercel.app/add-toy", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),

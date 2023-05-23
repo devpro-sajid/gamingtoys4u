@@ -3,7 +3,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/Authprovider';
 import SocialReg from './SocialReg';
 import Swal from 'sweetalert2';
+import { TabTitle } from '../../../Utils/Generatefunctions';
 const Login = () => {
+    TabTitle('Login | Gaming Toys & Puzzles');
     const { loginUser } = useContext(AuthContext);
     // const [forget, forgetHandle] = useState(false);
     const [error, setError] = useState('');

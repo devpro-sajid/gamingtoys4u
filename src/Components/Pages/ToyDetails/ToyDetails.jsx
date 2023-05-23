@@ -2,8 +2,10 @@ import Rating from 'react-rating';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import { FaRegStar, FaStar } from 'react-icons/fa'
+import { TabTitle } from '../../../Utils/Generatefunctions';
 
 const ToyDetails = () => {
+    TabTitle('Toy Details | Gaming Toys & Puzzles');
     const toy = useLoaderData();
     return (
         <>

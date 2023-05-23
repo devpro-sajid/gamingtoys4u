@@ -14,7 +14,7 @@ const ToyCategory = () => {
     const [loading,setLoading]=useState(true);
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:5000/allToysByCategory/${loadedCat}`)
+        fetch(`https://gaming-toy-server.vercel.app/allToysByCategory/${loadedCat}`)
         .then(res => res.json()
         .then(data => {
         setToys(data)

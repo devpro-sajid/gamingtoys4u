@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { FaShareAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/Authprovider';
+import { TabTitle } from '../../../Utils/Generatefunctions';
 
 const Blog = () => {
     const { user } = useContext(AuthContext);
+    TabTitle('Blog | Gaming Toys & Puzzles');
     return (
         <>
             <div className='herobg py-24'>

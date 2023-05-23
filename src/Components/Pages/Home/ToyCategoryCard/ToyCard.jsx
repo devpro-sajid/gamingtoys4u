@@ -2,10 +2,18 @@ import React from 'react';
 import Rating from 'react-rating';
 import { FaEye, FaRegStar, FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 const ToyCard = ({ toy }) => {
     const { toyName, _id, toyPhoto, toyPrice, rating } = toy
     return (
-        <div className='bg-white shadow-sm sm:mb-0 mb-4 py-5 px-7 rounded-sm'>
+        <div  data-aos="fade-up"
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        data-aos-mirror="true"
+        data-aos-once="true"
+        data-aos-anchor-placement="top-center" className='bg-white shadow-sm sm:mb-0 mb-4 py-5 px-7 rounded-sm'>
             <div className='flex justify-between items-center'>
                 <h2 className='sm:text-lg text-sm font-semibold font-fred'>{toyName}</h2>
                 <p className='sm:text-lg text-base text-[#26A8DF]'>${toyPrice}</p>

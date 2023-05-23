@@ -1,8 +1,16 @@
 import React from 'react';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init();
 const Testimonials = () => {
     return (
-        <section id="chef-section" className='boxed-container mb-16'>
+        <section data-aos="fade-up"
+        data-aos-offset="200"
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        data-aos-mirror="true"
+        data-aos-once="true"
+        data-aos-anchor-placement="top-center" id="chef-section" className='boxed-container mb-16'>
             <div className='flex flex-col items-center '>
                 <h2 className='font-mont md:text-3xl text-2xl font-bold'>Testimonials</h2>
                 <p className='pt-3 pb-4'>Read trusted reviews from our customers</p>

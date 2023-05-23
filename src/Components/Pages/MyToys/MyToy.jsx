@@ -5,12 +5,14 @@ import { FaAngleDown, FaRegEdit, FaEye } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Contexts/Authprovider';
 import ToyRow from './ToyRow';
+import { TabTitle } from '../../../Utils/Generatefunctions';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 const MyToy = () => {
+    TabTitle('My Toys | Gaming Toys & Puzzles');
     const { user } = useContext(AuthContext)
     const [toys, setToys] = useState([])
     const [loading, setLoading] = useState(true);
@@ -23,7 +25,7 @@ const MyToy = () => {
     
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:5000/myToys?email=${user.email}`)
+        fetch(`https://gaming-toy-server.vercel.app/myToys?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setLoading(false);
@@ -42,7 +44,7 @@ const MyToy = () => {
         }
         else {
             setLoading(true);
-            fetch(`http://localhost:5000/getMyToysByText?text=${searchText}&email=${user.email}`)
+            fetch(`https://gaming-toy-server.vercel.app/getMyToysByText?text=${searchText}&email=${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setToys(data);
@@ -53,7 +55,7 @@ const MyToy = () => {
     }
     const handleSortToys = (num, sorts) => {
         setLoading(true);
-        fetch(`http://localhost:5000/sortMyToys?num=${num}&email=${user.email}`)
+        fetch(`https://gaming-toy-server.vercel.app/sortMyToys?num=${num}&email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setLoading(false);
