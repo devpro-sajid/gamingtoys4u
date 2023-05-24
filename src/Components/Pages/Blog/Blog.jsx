@@ -9,15 +9,15 @@ const Blog = () => {
     TabTitle('Blog | Gaming Toys & Puzzles');
     return (
         <>
-            <div className='herobg py-24'>
-                <h2 className='text-center text-white text-3xl font-semibold'>Blog Page</h2>
+            <div className='herobg py-24 px-4'>
+                <h2 className='text-center text-white text=2xl md:text-3xl font-semibold'>Blog Page</h2>
                 <p className='font-mont text-white text-center pt-3'>Read our blogs and gather knowledge about toys more.</p>
             </div>
 
 
             <div className='grid boxed-container md:grid-cols-2 gap-8 my-16'>
-                <div className='text-left p-8 border border-gray-200 rounded-md shadow'>
-                    <img className='w-full h-80 rounded-md' src="https://i.ibb.co/GP6R2Ny/rt-and-at.png" alt="" />
+                <div className='text-left md:p-8 p-6 border border-gray-200 rounded-md shadow'>
+                    <img className='w-full md:h-80 rounded-md' src="https://i.ibb.co/GP6R2Ny/rt-and-at.png" alt="" />
 
                     <h2 className='sm:text-2xl text-xl font-bold pt-5'>What is an access token and refresh token? How do they work and where should we store them on the client-side?</h2>
 
@@ -31,18 +31,23 @@ const Blog = () => {
                     </p>
                     <div className='sm:flex sm:justify-between items-center sm:space-x-3 mt-2'>
                         <div className='flex space-x-2 items-center sm:mb-0 mb-3'>
-                            <img
+                            {user?<><img
                                 className="h-8 w-8 rounded-full"
                                 src={user?.photoURL}
                                 alt=""
-                            />
-                            <p>By <strong>{user?.displayName}</strong></p>
+                            /></>:<><img
+                            className="h-8 w-8 rounded-full"
+                            src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
+                            alt=""
+                        /></>}
+                            {user?<p>By <strong>{user?.displayName}</strong></p>:<p>By <strong>DevSajid</strong></p>}
+                            
                         </div>
                         <Link to='/blog'><button className='bg-[#26A8DF] px-10 py-1 rounded-md text-white font-semibold mr-4 border border-[#26A8DF] hover:bg-white hover:text-[#26A8DF] duration-500  text-lg'>View Details</button></Link>
                     </div>
                 </div>
-                <div className='text-left p-8 border border-gray-200 rounded-md shadow'>
-                    <img className='w-full h-80 rounded-md' src="https://i.ibb.co/khwcwL0/Aggregation.webp" alt="" />
+                <div className='text-left md:p-8 p-6 border border-gray-200 rounded-md shadow'>
+                    <img className='w-full md:h-80 rounded-md' src="https://i.ibb.co/khwcwL0/Aggregation.webp" alt="" />
 
                     <h2 className='sm:text-2xl text-xl font-bold pt-5'>What is MongoDB aggregate and how does it work?</h2>
 
@@ -56,18 +61,22 @@ const Blog = () => {
                     </p>
                     <div className='sm:flex sm:justify-between items-center sm:space-x-3 mt-2'>
                         <div className='flex space-x-2 items-center sm:mb-0 mb-3'>
-                            <img
+                        {user?<><img
                                 className="h-8 w-8 rounded-full"
                                 src={user?.photoURL}
                                 alt=""
-                            />
-                            <p>By <strong>{user?.displayName}</strong></p>
+                            /></>:<><img
+                            className="h-8 w-8 rounded-full"
+                            src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
+                            alt=""
+                        /></>}
+                            {user?<p>By <strong>{user?.displayName}</strong></p>:<p>By <strong>DevSajid</strong></p>}
                         </div>
                         <Link to='/blog'><button className='bg-[#26A8DF] px-10 py-1 rounded-md text-white font-semibold mr-4 border border-[#26A8DF] hover:bg-white hover:text-[#26A8DF] duration-500  text-lg'>View Details</button></Link>
                     </div>
                 </div>
-                <div className='text-left p-8 border border-gray-200 rounded-md shadow'>
-                    <img className='w-full h-80 rounded-md' src="https://i.ibb.co/KmVtFnJ/hqdefault.jpg" alt="" />
+                <div className='text-left md:p-8 p-6 border border-gray-200 rounded-md shadow'>
+                    <img className='w-full md:h-80 rounded-md' src="https://i.ibb.co/KmVtFnJ/hqdefault.jpg" alt="" />
 
                     <h2 className='sm:text-2xl text-xl font-bold pt-5'>Compare SQL and NoSQL databases?</h2>
 
@@ -77,18 +86,22 @@ const Blog = () => {
                     </p>
                     <div className='sm:flex sm:justify-between items-center sm:space-x-3 mt-2'>
                         <div className='flex space-x-2 items-center sm:mb-0 mb-3'>
-                            <img
+                        {user?<><img
                                 className="h-8 w-8 rounded-full"
                                 src={user?.photoURL}
                                 alt=""
-                            />
-                            <p>By <strong>{user?.displayName}</strong></p>
+                            /></>:<><img
+                            className="h-8 w-8 rounded-full"
+                            src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
+                            alt=""
+                        /></>}
+                            {user?<p>By <strong>{user?.displayName}</strong></p>:<p>By <strong>DevSajid</strong></p>}
                         </div>
                         <Link to='/blog'><button className='bg-[#26A8DF] px-10 py-1 rounded-md text-white font-semibold mr-4 border border-[#26A8DF] hover:bg-white hover:text-[#26A8DF] duration-500  text-lg'>View Details</button></Link>
                     </div>
                 </div>
-                <div className='text-left p-8 border border-gray-200 rounded-md shadow'>
-                    <img className='w-full h-80 rounded-md' src="https://i.ibb.co/ZdGRSTG/62448459577c97af6b9493a5dfd2008d262c4410-2240x1260.png" alt="" />
+                <div className='text-left md:p-8 p-6 border border-gray-200 rounded-md shadow'>
+                    <img className='w-full md:h-80  rounded-md' src="https://i.ibb.co/ZdGRSTG/62448459577c97af6b9493a5dfd2008d262c4410-2240x1260.png" alt="" />
 
                     <h2 className='sm:text-2xl text-xl font-bold pt-5'>What is express js? What is Nest JS?</h2>
 
@@ -98,12 +111,16 @@ const Blog = () => {
                     </p>
                     <div className='sm:flex sm:justify-between items-center sm:space-x-3 mt-2'>
                         <div className='flex space-x-2 items-center sm:mb-0 mb-3' >
-                            <img
+                        {user?<><img
                                 className="h-8 w-8 rounded-full"
                                 src={user?.photoURL}
                                 alt=""
-                            />
-                            <p>By <strong>{user?.displayName}</strong></p>
+                            /></>:<><img
+                            className="h-8 w-8 rounded-full"
+                            src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
+                            alt=""
+                        /></>}
+                            {user?<p>By <strong>{user?.displayName}</strong></p>:<p>By <strong>DevSajid</strong></p>}
                         </div>
                         <Link to='/blog'><button className='bg-[#26A8DF] px-10 py-1 rounded-md text-white font-semibold mr-4 border border-[#26A8DF] hover:bg-white hover:text-[#26A8DF] duration-500  text-lg'>View Details</button></Link>
                     </div>

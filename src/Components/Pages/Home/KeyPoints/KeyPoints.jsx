@@ -4,8 +4,7 @@ import 'aos/dist/aos.css';
 AOS.init();
 const KeyPoints = () => {
     return (
-        <div data-aos="zoom-in"
-        data-aos-offset="200"
+        <div data-aos="fade-up"
         data-aos-delay="50"
         data-aos-duration="1000"
         data-aos-mirror="true"

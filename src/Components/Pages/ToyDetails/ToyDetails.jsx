@@ -12,7 +12,7 @@ const ToyDetails = () => {
             <div className='bg-[#ECF4FA] py-4'>
                 <div className='boxed-container flex justify-between items-center'>
                     <h2 className='sm:text-2xl font-semibold'>Toy Details</h2>
-                    <p>Home {'>'} <Link className='text-emerald-400' to='/all-toys'>All Toys</Link></p>
+                    <p><Link className='text-black' to='/all-toys'>All Toys </Link>{'>'} {toy.toyName}</p>
                 </div>
             </div>
             <div className='boxed-container my-16'>

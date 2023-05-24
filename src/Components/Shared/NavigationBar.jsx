@@ -16,18 +16,18 @@ const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const handleLogout = () => {
     logOut()
-        .then(() => {
-          Swal.fire({
-            icon: 'success',
-            title: 'You have logged out Successfully',
-            showConfirmButton: false,
-            timer: 1500
-          })
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'You have logged out Successfully',
+          showConfirmButton: false,
+          timer: 1500
         })
-        .catch((error) => {
-            // toast.error(error.message);
-        })
-}
+      })
+      .catch((error) => {
+        // toast.error(error.message);
+      })
+  }
   return (
 
     <Disclosure as="nav" className="bg-gray-800">
@@ -49,7 +49,7 @@ const NavigationBar = () => {
                 </div>
                 <div className='flex items-center space-x-1'>
                   <RiMailSendLine></RiMailSendLine>
-                  <p>devsajid@gmail.com</p>
+                  <p>info@gamingtoy.com</p>
                 </div>
               </div>
             </div>
@@ -69,16 +69,16 @@ const NavigationBar = () => {
               </div>
               <div className="flex flex-1 items-center justify-center ">
                 <div className="flex  items-center">
-                  <img
+                  <Link to='/'><img
                     className="block h-12  w-auto lg:hidden"
                     src="https://i.ibb.co/W6nzzCV/Gaming-4.png"
                     alt="Your Company"
-                  />
-                  <img
+                  /> </Link>
+                  <Link to='/'><img
                     className="hidden h-16 w-auto lg:block"
                     src="https://i.ibb.co/W6nzzCV/Gaming-4.png"
                     alt="Your Company"
-                  />
+                  /></Link>
                 </div>
                 <div className="hidden sm:block mx-auto">
                   <div className="flex space-x-4 items-center">
@@ -120,14 +120,14 @@ const NavigationBar = () => {
                   <RiShoppingCart2Line className='text-white text-2xl'></RiShoppingCart2Line>
                   <div>
                     {user ? (<div title={user?.displayName
-                  }><Menu.Button className="flex rounded-full  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ml-4 bg-white">
-                      <img
-                        className="h-10 w-10 rounded-full"
-                        src={user?.photoURL}
-                        alt=""
-                      />
+                    }><Menu.Button className="flex rounded-full  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ml-4 bg-white">
+                        <img
+                          className="h-10 w-10 rounded-full"
+                          src={user?.photoURL}
+                          alt=""
+                        />
 
-                    </Menu.Button></div>) : (
+                      </Menu.Button></div>) : (
                       <Link to='/login' className='bg-[#26A8DF] sm:px-6 px-3 md:px-8 text-white md:py-2 rounded-sm sm:leading-6 leading-8 sm:block hidden ml-4 hover:text-[#26A8DF] border border-[#26A8DF]  hover:bg-[#1F2937] duration-500'>Login</Link>
                     )}
 
@@ -149,7 +149,7 @@ const NavigationBar = () => {
                           href="#"
                           className='block px-4 py-2 text-sm text-gray-700'
                         >
-                         {user?.displayName}
+                          {user?.displayName}
                         </a>
                       </Menu.Item>
                       <Menu.Item>

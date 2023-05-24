@@ -18,7 +18,7 @@ const ToyGallery = () => {
     ]
     return (
         <div className='boxed-container py-12'>
-            <div className='flex flex-col items-center md:pb-8 pb-4'>
+            <div className='flex flex-col items-center md:pb-8 pb-4 px-4 text-center'>
                 <h2 className='main-title'>Toy Gallery</h2>
                 <p className='text-center font-mont py-3'>Exclusive Game Toys Collection to explore</p>
                 <hr className='border border-[#26A8DF] w-24' />

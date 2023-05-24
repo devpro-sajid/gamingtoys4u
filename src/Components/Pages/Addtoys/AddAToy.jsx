@@ -42,8 +42,8 @@ const AddAToy = () => {
         <div className='herobg'>
             <div className='boxed-container py-16'>
                 <div style={{ borderRadius: '20px' }} className='drop-shadow-lg mx-auto bg-white'>
-                    <div className='py-5 lg:py-8 px-5'>
-                        <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded px-8 pt-6 pb-6 " id='add-form'>
+                    <div className='py-5 lg:py-8 md:px-5'>
+                        <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded md:px-8 px-7 pt-6 pb-6 " id='add-form'>
                             <h2 className='text-2xl font-bold  text-center mb-8 font-fred'>Add A Toy</h2>
 
                             <div className="md:flex items-center md:space-x-4">

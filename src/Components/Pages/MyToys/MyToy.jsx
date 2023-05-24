@@ -66,7 +66,7 @@ const MyToy = () => {
     return (
         <>
             <div className='herobg py-28 text-white text-center'>
-                <h2 className='text-3xl font-semibold font-fred'>My Toys</h2>
+                <h2 className='md:text-3xl text-2xl font-semibold font-fred'>My Toys</h2>
             </div>
 
             <div className='sm:flex justify-between boxed-container pt-12 pb-3 items-center'>

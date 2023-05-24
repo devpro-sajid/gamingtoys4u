@@ -134,7 +134,7 @@ const ToyRow = ({ toy, setLoadUpdateToys }) => {
                                                 Update Toy
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded px-8 pt-6 pb-6 " id='add-form'>
+                                                <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded md:px-8 px-2 pt-6 pb-6 " id='add-form'>
                                                     <div className="md:flex items-center md:space-x-4">
                                                         <div className='md:w-1/2 mb-3'>
                                                             <label className="block text-gray-700 text-sm font-bold mb-2">
