@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import { FaRegStar, FaStar } from 'react-icons/fa'
 import { TabTitle } from '../../../Utils/Generatefunctions';
+import { AuthContext } from '../../../Contexts/Authprovider';
+import Swal from 'sweetalert2';
 
 const ToyDetails = () => {
     TabTitle('Toy Details | Gaming Toys & Puzzles');

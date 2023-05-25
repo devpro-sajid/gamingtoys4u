@@ -1,9 +1,10 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState, Fragment, useContext } from 'react';
 import { FaAngleDown, FaChevronDown, FaEye } from 'react-icons/fa';
 import { Menu, Transition } from '@headlessui/react'
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import { TabTitle } from '../../../Utils/Generatefunctions';
+import { AuthContext } from '../../../Contexts/Authprovider';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -14,7 +15,21 @@ const AllToys = () => {
     const [toys, setToys] = useState([])
     const [loading, setLoading] = useState(true);
     const [searchText, setSearchText] = useState("");
-    const [sortValue, setsortValue] = useState('Sort data by')
+    const [sortValue, setsortValue] = useState('Sort data by');
+    const {user}=useContext(AuthContext)
+    const handleViewNotification=()=>{
+        if(user){
+           return;
+        }
+        else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'You have to log in first to view details',
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+    }
     useEffect(() => {
         setLoading(true);
         fetch('https://gaming-toy-server.vercel.app/allToys')
@@ -206,7 +221,7 @@ const AllToys = () => {
                                             <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">{toy?.category}</td>
                                             <td className="whitespace-nowrap md:px-6 px-4 py-4 text-black">${toy?.toyPrice}</td>
                                             <td className="whitespace-nowrap md:px-6 px-4  py-4 text-black">{toy?.quantity}</td>
-                                            <td className="whitespace-nowrap md:pl-6 pl-4 flex justify-end py-4 text-black"><Link to={`/toy-details/${toy?._id}`}><button className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
+                                            <td className="whitespace-nowrap md:pl-6 pl-4 flex justify-end py-4 text-black"><Link to={`/toy-details/${toy?._id}`}><button onClick={handleViewNotification}  className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
                                                 <FaEye></FaEye>
                                             </button></Link></td>
                                         </tr>)

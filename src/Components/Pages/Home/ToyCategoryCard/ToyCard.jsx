@@ -4,9 +4,26 @@ import { FaEye, FaRegStar, FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
+import Swal from 'sweetalert2';
+import { useContext } from 'react';
+import { AuthContext } from '../../../../Contexts/Authprovider';
 AOS.init();
 const ToyCard = ({ toy }) => {
     const { toyName, _id, toyPhoto, toyPrice, rating } = toy
+    const {user}=useContext(AuthContext)
+    const handleViewNotification=()=>{
+        if(user){
+           return
+        }
+        else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'You have to log in first to view details',
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+    }
     return (
         <div  data-aos="fade-up"
         data-aos-delay="50"
@@ -32,7 +49,7 @@ const ToyCard = ({ toy }) => {
                     fullSymbol={<FaStar />}
                     readonly
                 />
-                <Link to={`/toy-details/${_id}`}><button className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
+                <Link to={`/toy-details/${_id}`}><button onClick={handleViewNotification} className='flex items-center space-x-2 justify-items-center bg-[#26A8DF] text-white hover:bg-white border border-[#26A8DF] duration-500 hover:text-[#26A8DF] rounded-sm px-3 py-1'><span>View Details</span>
                     <FaEye></FaEye>
                 </button></Link>
 
